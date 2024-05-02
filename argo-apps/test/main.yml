@@ -12,4 +12,20 @@ spec:
       releaseName: app1
   destination:
     server: https://kubernetes.default.svc
-    namespace: app1-test-main
+    namespace: test-main
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app2-test-main
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/BenHesketh21/gitops-release-branches-argo.git
+    targetRevision: HEAD
+    path: charts/app2
+    helm:
+      releaseName: app2
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: test-main
