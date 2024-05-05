@@ -69,8 +69,8 @@ jobs:
           yq e -i ".image.tag=\"${version/app1-/}\"" charts/app1/values.yaml
           git config --global user.name BenHesketh21
           git config --global user.email heskethben0@gmail.com
-          git add .
+          git add charts/app1/values.yaml
           git commit -m "[skip-ci] Updating app1 to {version/app1/}"
-          git push
+          git push https://BenHesketh21:${GH_TOKEN}@github.com/BenHesketh21/gitops-release-branches-argo.git main
         
           
