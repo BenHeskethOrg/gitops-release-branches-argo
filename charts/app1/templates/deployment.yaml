@@ -16,6 +16,11 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: TENANT
+            value: {{ .Values.env.tenant }}
+          - name: ENV
+            value: {{ .Values.env.name }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

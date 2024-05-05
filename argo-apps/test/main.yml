@@ -10,6 +10,10 @@ spec:
     path: charts/app1
     helm:
       releaseName: app1
+      valueFiles:
+      - values.yaml
+      - values/test/base.yml
+      - values/test/main/version.yml
   destination:
     server: https://kubernetes.default.svc
     namespace: test-main
@@ -30,6 +34,10 @@ spec:
     path: charts/app2
     helm:
       releaseName: app2
+      valueFiles:
+      - values.yaml
+      - values/test/base.yml
+      - values/test/main/version.yml
   destination:
     server: https://kubernetes.default.svc
     namespace: test-main

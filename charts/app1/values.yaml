@@ -12,3 +12,7 @@ image:
 service:
   type: ClusterIP
   port: 80
+
+env:
+  name: test
+  tenant: yoga
