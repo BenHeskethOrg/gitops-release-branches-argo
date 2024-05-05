@@ -27,8 +27,11 @@ jobs:
           do
             latestRelease=$(gh release list -R BenHesketh21/gitops-release-branches --json name,tagName,isLatest,createdAt -q "[.[]|select(.tagName | startswith(\"${app}-main\"))]|.[0]")
             echo ${latestRelease} | jq .
-            version=$(echo "${latestRelease}" | jq '.tagName')
-            yq w -iP stack_versions.json "${app}" "${version/${app}/}" -o=json
+            version=$(echo "${latestRelease}" | jq -r '.tagName')
+            version_without_app=$(echo ${version} | sed "s ${app}-  g")
+            echo "version: ${version_without_app}"
+            echo "${app}"
+            yq e -iP ".${app}=\"${version_without_app}\"" stack_versions.json -o=json
             cat stack_versions.json | jq .
           done
       - uses: actions/upload-artifact@v4
