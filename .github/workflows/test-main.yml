@@ -77,7 +77,7 @@ jobs:
           git config --global user.email heskethben0@gmail.com
           git checkout -b "${{ matrix.app }}-${version}-${{ github.run_id }}"
           git add charts/${{ matrix.app }}/values.yaml
-          git commit -m "[skip-ci] Updating ${{ matrix.app }} to ${version}"
+          git commit -m "[skip actions] Updating ${{ matrix.app }} to ${version}"
           git push https://BenHesketh21:${PUSH_TOKEN}@github.com/BenHesketh21/gitops-release-branches-argo.git "${{ matrix.app }}-${version}-${{ github.run_id }}"
           gh pr create --title "${{ matrix.app }}-${version}" --body "${{ matrix.app }}-${version}" --head "${{ matrix.app }}-${version}-${{ github.run_id }}" --base main
           pr_number=$(gh pr list --head "${{ matrix.app }}-${version}-${{ github.run_id }}" --base main --json number -q .[0].number)
