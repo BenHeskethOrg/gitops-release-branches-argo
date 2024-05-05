@@ -75,7 +75,7 @@ jobs:
           yq e -i ".image.tag=\"${version/${{ matrix.app }}-/}\"" charts/${{ matrix.app }}/values.yaml
           git config --global user.name BenHesketh21
           git config --global user.email heskethben0@gmail.com
-          git checkout -b "${{ matrix.app }}-${version}"
+          git checkout -b "${{ matrix.app }}-${version}-${{ github.run_id }}"
           git add charts/${{ matrix.app }}/values.yaml
           git commit -m "[skip-ci] Updating ${{ matrix.app }} to ${version}"
           git push https://BenHesketh21:${PUSH_TOKEN}@github.com/BenHesketh21/gitops-release-branches-argo.git "${{ matrix.app }}-${version}"
