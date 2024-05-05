@@ -65,17 +65,17 @@ jobs:
       - name: Update ${{ matrix.app }} Version
         run: |
           version=$(jq -r .${{ matrix.app }} $GITHUB_WORKSPACE/stack_versions.json)
-          current_version=$(yq e ".image.tag" charts/${{ matrix.app }}/values.yaml)
+          current_version=$(yq e ".image.tag" charts/${{ matrix.app }}/values/test/main.yaml)
           if [[ "${current_version}" == "${version}" ]]
           then
             echo "Version already deployed"
             exit 0
           fi
-          yq e -i ".image.tag=\"${version/${{ matrix.app }}-/}\"" charts/${{ matrix.app }}/values.yaml
+          yq e -i ".image.tag=\"${version/${{ matrix.app }}-/}\"" charts/${{ matrix.app }}/values/test/main.yaml
           git config --global user.name BenHesketh21
           git config --global user.email heskethben0@gmail.com
           git checkout -b "${{ matrix.app }}-${version}-${{ github.run_id }}"
-          git add charts/${{ matrix.app }}/test/main/version.yml
+          git add charts/${{ matrix.app }}/values/test/main.yml
           git commit -m "[skip actions] Updating ${{ matrix.app }} to ${version}"
           git push https://BenHesketh21:${PUSH_TOKEN}@github.com/BenHesketh21/gitops-release-branches-argo.git "${{ matrix.app }}-${version}-${{ github.run_id }}"
           gh pr create --title "${{ matrix.app }}-${version}" --body "${{ matrix.app }}-${version}" --head "${{ matrix.app }}-${version}-${{ github.run_id }}" --base main
