@@ -3,14 +3,12 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
 image:
   registry: benhesketh21
   repository: app1
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "main-8929852676"
-
+  tag: "main-8952262276"
 service:
   type: ClusterIP
   port: 80
