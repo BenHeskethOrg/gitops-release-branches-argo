@@ -83,7 +83,7 @@ jobs:
           merged="false"
           max_attempts=2
           attempt=0
-          while [[ "${merged}" == "false" ]] && [[ "${attempt}" -lt "${max_attempts}"]]
+          while [[ "${merged}" == "false" ]] && [[ "${attempt}" -lt "${max_attempts}" ]]
           do
             gh pr merge "${pr_number}" --auto -d --squash
             if [[ "$?" == "0" ]]
