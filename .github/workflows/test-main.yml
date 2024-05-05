@@ -64,7 +64,7 @@ jobs:
       - name: Update App 1 Version
         run: |
           version=$(jq .app1 $GITHUB_WORKSPACE/stack_versions.json)
-          ../yq w -i charts/app1/values.yaml 'image.tag' "${version/app1/}"
+          yq e -i charts/app1/values.yaml ".image.tag=\"${version/app1-/}\""
           git add .
           git commit -m "[skip-ci] Updating app1 to {version/app1/}"
           git push
