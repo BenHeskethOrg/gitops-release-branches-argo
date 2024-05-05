@@ -63,6 +63,12 @@ jobs:
       - name: Update App 1 Version
         run: |
           version=$(jq -r .app1 $GITHUB_WORKSPACE/stack_versions.json)
+          current_version=$(yq e ".image.tag" charts/app1/values.yaml)
+          if [[ "${current_version}" == "${version}" ]]
+          then
+            echo "Version already deployed"
+            exit 0
+          fi
           yq e -i ".image.tag=\"${version/app1-/}\"" charts/app1/values.yaml
           git config --global user.name BenHesketh21
           git config --global user.email heskethben0@gmail.com
@@ -89,6 +95,12 @@ jobs:
       - name: Update App 2 Version
         run: |
           version=$(jq -r .app2 $GITHUB_WORKSPACE/stack_versions.json)
+          current_version=$(yq e ".image.tag" charts/app2/values.yaml)
+          if [[ "${current_version}" == "${version}" ]]
+          then
+            echo "Version already deployed"
+            exit 0
+          fi
           yq e -i ".image.tag=\"${version/app2-/}\"" charts/app2/values.yaml
           git config --global user.name BenHesketh21
           git config --global user.email heskethben0@gmail.com
