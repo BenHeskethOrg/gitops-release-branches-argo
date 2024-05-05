@@ -86,6 +86,8 @@ jobs:
           set +e
           while [[ "${merged}" == "false" ]] && [[ "${attempt}" -lt "${max_attempts}" ]]
           do
+            attempt=$((attempt+1))
+            echo "Attempt: ${attempt}"
             gh pr merge "${pr_number}" --auto -d --squash
             if [[ "$?" == "0" ]]
             then
