@@ -71,6 +71,6 @@ jobs:
           git config --global user.email heskethben0@gmail.com
           git add charts/app1/values.yaml
           git commit -m "[skip-ci] Updating app1 to {version/app1/}"
-          git push https://BenHesketh21:${GH_TOKEN}@github.com/BenHesketh21/gitops-release-branches-argo.git main
+          git push https://BenHesketh21:${{ secrets.PUSH_TOKEN }}@github.com/BenHesketh21/gitops-release-branches-argo.git main
         
           
