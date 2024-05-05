@@ -78,5 +78,5 @@ jobs:
           git checkout -b "${{ matrix.app }}-${version}-${{ github.run_id }}"
           git add charts/${{ matrix.app }}/values.yaml
           git commit -m "[skip-ci] Updating ${{ matrix.app }} to ${version}"
-          git push https://BenHesketh21:${PUSH_TOKEN}@github.com/BenHesketh21/gitops-release-branches-argo.git "${{ matrix.app }}-${version}"
-          gh pr create --title "${{ matrix.app }}-${version}" --body "${{ matrix.app }}-${version}" --head "${{ matrix.app }}-${version}" --base main
+          git push https://BenHesketh21:${PUSH_TOKEN}@github.com/BenHesketh21/gitops-release-branches-argo.git "${{ matrix.app }}-${version}-${{ github.run_id }}"
+          gh pr create --title "${{ matrix.app }}-${version}" --body "${{ matrix.app }}-${version}" --head "${{ matrix.app }}-${version}-${{ github.run_id }}" --base main
