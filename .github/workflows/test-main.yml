@@ -27,7 +27,7 @@ jobs:
           do
             latestRelease=$(gh release list -R BenHesketh21/gitops-release-branches --json name,tagName,isLatest,createdAt -q "[.[]|select(.tagName | startswith(\"${app}-main\"))]|.[0]")
             version=$(echo "${latestRelease}" | jq '.tagName')
-            yq w -iP stack_versions.yml "${app}" "${version/${app}/}" -j
+            yq w -iP stack_versions.yml "${app}" "${version/${app}/}" -0=json
           done
       - uses: actions/upload-artifact@v4
         with:
