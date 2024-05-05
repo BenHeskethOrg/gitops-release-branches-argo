@@ -1,1 +1,1 @@
-# gitops-release-branches-argo
+# gitops-release-branches-argo\n
