@@ -76,4 +76,5 @@ jobs:
           git config --global user.email heskethben0@gmail.com
           git add charts/${{ matrix.app }}/values.yaml
           git commit -m "[skip-ci] Updating ${{ matrix.app }} to ${version}"
+          git pull
           git push https://BenHesketh21:${PUSH_TOKEN}@github.com/BenHesketh21/gitops-release-branches-argo.git main
