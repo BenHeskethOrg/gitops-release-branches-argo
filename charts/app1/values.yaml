@@ -4,7 +4,7 @@
 
 replicaCount: 1
 image:
-  registry: benhesketh21
+  registry: ghcr.io/benhesketh21
   repository: app1
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
