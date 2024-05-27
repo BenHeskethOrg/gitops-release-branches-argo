@@ -3,8 +3,6 @@ kind: Stage
 metadata:
   name: tenant1-test-main
   namespace: test-main
-  labels:
-    kargo.akuity.io/description: HELLO
 spec:
   subscriptions:
     warehouse: test-main-warehouse
@@ -22,6 +20,3 @@ spec:
           key: .image.tag
           value: Tag
           valuesFilePath: charts/app2/values/test/main/version.yml
-  verification:
-    analysisTemplates:
-    - name: pass
