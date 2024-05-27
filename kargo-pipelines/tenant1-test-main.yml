@@ -14,11 +14,11 @@ spec:
       writeBranch: main
       helm:
         images:
-        - image: benhesketh21/app1
+        - image: ghcr.io/benhesketh21/app1
           key: .image.tag
           value: Tag
           valuesFilePath: charts/app1/values/test/main/version.yml
-        - image: benhesketh21/app2
+        - image: ghcr.io/benhesketh21/app2
           key: .image.tag
           value: Tag
           valuesFilePath: charts/app2/values/test/main/version.yml
