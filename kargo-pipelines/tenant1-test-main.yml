@@ -1,0 +1,27 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: tenant1-test-main
+  namespace: test-main
+  labels:
+    kargo.akuity.io/description: HELLO
+spec:
+  subscriptions:
+    warehouse: test-main-warehouse
+  promotionMechanisms:
+    gitRepoUpdates:
+    - repoURL: https://github.com/BenHesketh21/gitops-release-branches-argo
+      writeBranch: main
+      helm:
+        images:
+        - image: benhesketh21/app1
+          key: .image.tag
+          value: Tag
+          valuesFilePath: charts/app1/values/test/main/version.yml
+        - image: benhesketh21/app2
+          key: .image.tag
+          value: Tag
+          valuesFilePath: charts/app2/values/test/main/version.yml
+  verification:
+    analysisTemplates:
+    - name: pass
