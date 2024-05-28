@@ -13,10 +13,15 @@ spec:
       helm:
         images:
         - image: ghcr.io/benhesketh21/app1
-          key: .image.tag
+          key: image.tag
           value: Tag
           valuesFilePath: charts/app1/values/test/main/version.yml
         - image: ghcr.io/benhesketh21/app2
-          key: .image.tag
+          key: image.tag
           value: Tag
           valuesFilePath: charts/app2/values/test/main/version.yml
+    argoCDAppUpdates:
+    - appName: app1-test-main
+      appNamespace: argocd
+    - appName: app2-test-main
+      appNamespace: argocd
