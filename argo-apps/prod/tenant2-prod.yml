@@ -19,7 +19,7 @@ spec:
       - values/prod/tenant2/version.yml
   destination:
     server: https://kubernetes.default.svc
-    namespace: prod
+    namespace: tenant2-prod
   syncPolicy:
     automated: {}
     syncOptions:
@@ -46,7 +46,7 @@ spec:
       - values/prod/tenant2/version.yml
   destination:
     server: https://kubernetes.default.svc
-    namespace: prod
+    namespace: tenant2-prod
   syncPolicy:
     automated: {}
     syncOptions:
