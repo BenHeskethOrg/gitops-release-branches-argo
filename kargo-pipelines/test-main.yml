@@ -33,6 +33,9 @@ spec:
         includePaths:
         - charts/app1
         - charts/app2
+        excludePaths:
+        - glob:charts/app1/values/*/version.yml
+        - glob:charts/app2/values/*/version.yml
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
