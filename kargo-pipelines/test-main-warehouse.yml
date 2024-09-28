@@ -5,7 +5,7 @@ metadata:
   namespace: test-main
 spec:
   freightCreationPolicy: Automatic
-  interval: 1h0m
+  interval: 5m0s
   subscriptions:
     - image:
         discoveryLimit: 2

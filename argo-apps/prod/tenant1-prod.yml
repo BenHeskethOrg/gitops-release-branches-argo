@@ -1,0 +1,53 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app1-tenant1-prod
+  namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: staging-v0-0-1:tenant1-prod
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/BenHesketh21/gitops-release-branches-argo.git
+    targetRevision: HEAD
+    path: charts/app1
+    helm:
+      releaseName: app1
+      valueFiles:
+      - values.yaml
+      - values/prod/base.yml
+      - values/prod/tenant1/version.yml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app2-tenant1-prod
+  namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: staging-v0-0-1:tenant1-prod
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/BenHesketh21/gitops-release-branches-argo.git
+    targetRevision: HEAD
+    path: charts/app2
+    helm:
+      releaseName: app2
+      valueFiles:
+      - values.yaml
+      - values/prod/base.yml
+      - values/prod/tenant1/version.yml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true

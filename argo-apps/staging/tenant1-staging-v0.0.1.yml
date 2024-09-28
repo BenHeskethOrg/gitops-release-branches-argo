@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app1-staging-v0-0-1
+  name: app1-tenant1-staging-v0-0-1
   namespace: argocd
   annotations:
     kargo.akuity.io/authorized-stage: staging-v0-0-1:tenant1-staging-v0-0-1
@@ -16,10 +16,10 @@ spec:
       valueFiles:
       - values.yaml
       - values/staging/base.yml
-      - values/staging/v0.0.1/version.yml
+      - values/staging/v0.0.1/tenant1/version.yml
   destination:
     server: https://kubernetes.default.svc
-    namespace: staging-v0-0-1
+    namespace: tenant1-staging-v0-0-1
   syncPolicy:
     automated: {}
     syncOptions:
@@ -28,7 +28,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app2-staging-v0-0-1
+  name: app2-tenant1-staging-v0-0-1
   namespace: argocd
   annotations:
     kargo.akuity.io/authorized-stage: staging-v0-0-1:tenant1-staging-v0-0-1
@@ -43,10 +43,10 @@ spec:
       valueFiles:
       - values.yaml
       - values/staging/base.yml
-      - values/staging/v0.0.1/version.yml
+      - values/staging/v0.0.1/tenant1/version.yml
   destination:
     server: https://kubernetes.default.svc
-    namespace: staging-v0-0-1
+    namespace: tenant1-staging-v0-0-1
   syncPolicy:
     automated: {}
     syncOptions:

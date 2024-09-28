@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app1-prod
+  name: app1-tenant1-test-main
   namespace: argocd
   annotations:
-    kargo.akuity.io/authorized-stage: staging-v0-0-1:tenant1-staging-v0-0-1
+    kargo.akuity.io/authorized-stage: test-main:tenant1-test-main
 spec:
   project: default
   source:
@@ -12,14 +12,14 @@ spec:
     targetRevision: HEAD
     path: charts/app1
     helm:
-      releaseName: app1
+      releaseName: tenant1-app1
       valueFiles:
       - values.yaml
-      - values/prod/base.yml
-      - values/prod/version.yml
+      - values/test/base.yml
+      - values/test/main/tenant1/version.yml
   destination:
     server: https://kubernetes.default.svc
-    namespace: prod
+    namespace: tenant1-test-main
   syncPolicy:
     automated: {}
     syncOptions:
@@ -28,10 +28,10 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app2-prod
+  name: app2-tenant1-test-main
   namespace: argocd
   annotations:
-    kargo.akuity.io/authorized-stage: staging-v0-0-1:tenant1-staging-v0-0-1
+    kargo.akuity.io/authorized-stage: test-main:tenant1-test-main
 spec:
   project: default
   source:
@@ -39,14 +39,14 @@ spec:
     targetRevision: HEAD
     path: charts/app2
     helm:
-      releaseName: app2
+      releaseName: tenant1-app2
       valueFiles:
       - values.yaml
-      - values/prod/base.yml
-      - values/prod/version.yml
+      - values/test/base.yml
+      - values/test/main/tenant1/version.yml
   destination:
     server: https://kubernetes.default.svc
-    namespace: prod
+    namespace: tenant1-test-main
   syncPolicy:
     automated: {}
     syncOptions:

@@ -34,11 +34,15 @@ apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
   name: tenant1-prod
-  namespace: prod
+  namespace: staging-v0-0-1
 spec:
-  subscriptions:
-    upstreamStages:
-    - name: tenant1-staging-v0-0-1
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: staging-v0-0-1-warehouse
+    sources:
+      stages:
+      - tenant1-staging-v0-0-1
   promotionMechanisms:
     gitRepoUpdates:
     - repoURL: https://github.com/BenHesketh21/gitops-release-branches-argo
