@@ -2,6 +2,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: app1-test-main
+  namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: test-main:tenant1-test-main
 spec:
   project: default
   source:
@@ -26,6 +29,9 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: app2-test-main
+  namespace: argocd
+  annotations:
+    kargo.akuity.io/authorized-stage: test-main:tenant1-test-main
 spec:
   project: default
   source:
