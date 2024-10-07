@@ -71,6 +71,8 @@ spec:
   verification:
     analysisTemplates:
     - name: pass
+      clusterScope: true
+    - name: pass
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
@@ -105,4 +107,6 @@ spec:
       appNamespace: argocd
   verification:
     analysisTemplates:
+    - name: fail
+      clusterScope: true
     - name: pass

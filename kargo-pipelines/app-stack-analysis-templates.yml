@@ -5,7 +5,7 @@ metadata:
   namespace: test-main
 spec:
   metrics:
-  - name: pass
+  - name: pass-project
     count: 1
     interval: 5s
     failureLimit: 1

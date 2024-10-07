@@ -21,6 +21,8 @@ spec:
             value: {{ .Values.env.tenant }}
           - name: ENV
             value: {{ .Values.env.name }}
+          - name: BOOM
+            value: hello
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
