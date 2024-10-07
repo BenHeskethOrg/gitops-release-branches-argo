@@ -30,7 +30,7 @@ jobs:
     - run: |
         wget https://raw.githubusercontent.com/kostis-codefresh/kustomize-github-preview-diff/main/pr-comment-template.txt
         sed  's/DESCRIPTION_HERE/tenant1-app1/g' pr-comment-template.txt > tenant1-app1-diff.txt
-        sed  -e "/DIFF_HERE/{r qa-changes.diff" -e "d}" tenant1-app1-diff.txt > tenant1-app1-result.txt
+        sed  -e "/DIFF_HERE/{r tenant1-app1-changes.diff" -e "d}" tenant1-app1-diff.txt > tenant1-app1-result.txt
         cat tenant1-app1-result.txt > comment.txt
     - name: PR comment with file
       uses: thollander/actions-comment-pull-request@v2
