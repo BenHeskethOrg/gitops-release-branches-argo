@@ -28,7 +28,7 @@ jobs:
         mkdir target/render
         helm template tenant1-app1 pr/charts/app1 -f pr/charts/app1/values.yaml -f pr/charts/app1/values/test/base.yml -f pr/charts/app1/values/test/main/tenant1/version.yml | ./pr/helm-fan-out ./pr/render
         helm template tenant1-app1 target/charts/app1 -f target/charts/app1/values.yaml -f target/charts/app1/values/test/base.yml -f target/charts/app1/values/test/main/tenant1/version.yml | ./target/helm-fan-out ./target/render
-        diff -rN target/render pr/render | sed -E 's@.*\/(.*\/.*)\ .*@====\ \1\ ====@g' > tenant1-app1-changes.diff || true
+        diff -rN -U 7 target/render pr/render | sed -E 's@.*\/(.*\/.*)\ .*@====\ \1\ ====@g' > tenant1-app1-changes.diff || true
     - run: |
         wget https://raw.githubusercontent.com/kostis-codefresh/kustomize-github-preview-diff/main/pr-comment-template.txt
         sed  's/DESCRIPTION_HERE/tenant1-app1/g' pr-comment-template.txt > tenant1-app1-diff.txt
