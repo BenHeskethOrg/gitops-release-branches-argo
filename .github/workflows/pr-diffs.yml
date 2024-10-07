@@ -24,9 +24,8 @@ jobs:
         path: target
         ref: ${{ github.event.pull_request.base.ref }}
     - run: |
-        curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-        helm template app tenant1-app1 pr/charts/app1 -f pr/charts/app1/values.yaml -f pr/charts/app1/values/test/base.yml -f pr/charts/app1/values/test/main/tenant1/version.yml > tenant1-app1-pr.yml
-        helm template app tenant1-app1 target/charts/app1 -f target/charts/app1/values.yaml -f target/charts/app1/values/test/base.yml -f target/charts/app1/values/test/main/tenant1/version.yml > tenant1-app1-target.yml
+        helm template tenant1-app1 pr/charts/app1 -f pr/charts/app1/values.yaml -f pr/charts/app1/values/test/base.yml -f pr/charts/app1/values/test/main/tenant1/version.yml > tenant1-app1-pr.yml
+        helm template tenant1-app1 target/charts/app1 -f target/charts/app1/values.yaml -f target/charts/app1/values/test/base.yml -f target/charts/app1/values/test/main/tenant1/version.yml > tenant1-app1-target.yml
         diff -U 7 tenant1-app1-pr.yml tenant1-app1-target.yml > tenant1-app1-changes.diff || true
     - run: |
         wget https://raw.githubusercontent.com/kostis-codefresh/kustomize-github-preview-diff/main/pr-comment-template.txt
