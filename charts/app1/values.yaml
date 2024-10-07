@@ -16,3 +16,6 @@ service:
 env:
   name: test
   tenant: yoga
+
+newEnvs:
+  enabled: true
