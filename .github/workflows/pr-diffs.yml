@@ -33,9 +33,7 @@ jobs:
         sed  's/DESCRIPTION_HERE/tenant1-app1/g' pr-comment-template.txt > tenant1-app1-diff.txt
         sed  -e "/DIFF_HERE/{r qa-changes.diff" -e "d}" tenant1-app1-diff.txt > tenant1-app1-result.txt
         cat tenant1-app1-result.txt > comment.txt
-    - name: comment PR
-      uses: machine-learning-apps/pr-comment@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: PR comment with file
+      uses: thollander/actions-comment-pull-request@v2
       with:
-        path: comment.txt
+        filePath: comment.txt
