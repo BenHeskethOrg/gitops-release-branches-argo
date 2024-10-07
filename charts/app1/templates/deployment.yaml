@@ -17,7 +17,7 @@ spec:
           image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-          - name: TENANT
+          - name: TENANT1
             value: {{ .Values.env.tenant }}
           {{ if .Values.newEnvs.enabled -}}
           - name: ENV
