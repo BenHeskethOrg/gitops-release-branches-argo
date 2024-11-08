@@ -1,0 +1,29 @@
+---
+# Source: app2/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app2
+  template:
+    metadata:
+      labels:
+        app: app2
+    spec:
+      containers:
+        - name: app2
+          image: "ghcr.io/benhesketh21/app2:main-9275216837"
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: TENANT
+            value: yoga
+          - name: ENV
+            value: test
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
