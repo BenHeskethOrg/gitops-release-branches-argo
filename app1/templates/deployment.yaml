@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app1
-          image: "ghcr.io/benhesketh21/app1:main-11393214337"
+          image: "ghcr.io/benhesketh21/app1:main-11750500935"
           imagePullPolicy: IfNotPresent
           env:
           - name: TENANT
